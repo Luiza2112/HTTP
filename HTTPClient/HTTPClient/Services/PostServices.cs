@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -13,8 +14,11 @@ namespace HTTPClient.Services
     internal class PostServices
     {
         private HttpClient httpClient;
+        private Post post;
         private ObservableCollection<Post> posts;
         private JsonSerializerOptions JsonSerializerOptions;
+
+        Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
 
         public PostServices()
         {
@@ -27,7 +31,6 @@ namespace HTTPClient.Services
 
         public async Task<ObservableCollection<Post>> GetPostsAsync() //Padronização de nome: Get + nome do recurso
         {
-            Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
             try
             {
                 HttpResponseMessage response = await httpClient.GetAsync(uri);
@@ -42,6 +45,27 @@ namespace HTTPClient.Services
 
             }
             return posts;
+        }
+
+        public async Task<Post> SavePostAsync(Post item)
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize<Post>(item, JsonSerializerOptions);
+                StringContent content = new StringContent(json, Encoding.UTF8, "aplication/json");
+                HttpResponseMessage response = await httpClient.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode) {
+                    Debug.WriteLine(response.Content);
+                }
+               
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.Message);
+
+            }
+            return post;
         }
 
 
