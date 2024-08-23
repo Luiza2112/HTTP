@@ -14,7 +14,7 @@
         Route="PostView" />
         <ShellContent
         Title="Criar postagens"
-        ContentTemplate="{DataTemplate local:PostView}"
+        ContentTemplate="{DataTemplate local:CreatePostView}"
         Route="CreatePostView" />
     </TabBar>
 

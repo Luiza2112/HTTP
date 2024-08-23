@@ -4,7 +4,8 @@
              x:Class="HTTPClient.Views.CreatePostView"
              Title="CreatePostView">
     <VerticalStackLayout 
-        Spacing="30">
+        Spacing="30"
+        Padding="20">
         <Label 
             Text="Título da postagem"/>
         <Entry

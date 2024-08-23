@@ -4,12 +4,15 @@
              x:Class="HTTPClient.Views.PostView"
              Title="PostView">
     <ScrollView>
-        <VerticalStackLayout>
-            <Button Text="Carregar Postagens" Command="{Binding getPostagensCommand}"/>
+        <VerticalStackLayout
+            Padding="20">
+            <Button Text="Carregar Postagens" Command="{Binding getPostagensCommand}"
+                    BackgroundColor="Indigo"/>
             <CollectionView ItemsSource="{Binding Posts}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout>
+                        <VerticalStackLayout
+                            Padding="20">
                             <Label Text="{Binding Title}"/>
                             <Label Text="{Binding Body}"/>
                         </VerticalStackLayout>
